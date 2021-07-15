@@ -119,9 +119,13 @@ import { nanoid } from 'nanoid'
 
 export default {
   name: 'Form',
-  setup() {
-    const books = ref([])
-
+  props: {
+    books: {
+      type: Array,
+      required: true,
+    },
+  },
+  setup(props) {
     const state = reactive({
       bookTitle: '',
       bookAuthor: '',
@@ -129,8 +133,10 @@ export default {
       bookisComplete: false,
     })
 
-    function addBook() {
-      books.value.push({
+    const booksData = ref(props.books)
+
+    async function addBook() {
+      const addData = await booksData.value.push({
         id: nanoid(),
         title: state.bookTitle,
         author: state.bookAuthor,
@@ -138,6 +144,7 @@ export default {
         isComplete: state.bookisComplete,
       })
       clearInput()
+      return addData
     }
 
     function clearInput() {
@@ -145,11 +152,12 @@ export default {
       state.bookAuthor = ''
       state.bookYear = null
       state.bookisComplete = false
+      return state
     }
 
     return {
       ...toRefs(state),
-      books,
+      booksData,
       addBook,
       clearInput,
     }
