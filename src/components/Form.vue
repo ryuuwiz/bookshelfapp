@@ -1,6 +1,6 @@
 <template>
   <form
-    class="p-4 mx-auto lg:w-6/12 bg-gray-100 rounded-lg shadow-xl"
+    class="p-4 mb-5 mx-auto lg:w-6/12 bg-gray-200 rounded-lg shadow-xl"
     @submit.prevent="addBook"
   >
     <div class="mb-3">
