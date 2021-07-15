@@ -70,18 +70,19 @@
       />
     </div>
 
-    <div class="mb-3">
-      <label for="bookisComplete" class="text-xl font-bold text-gray-600"
+    <div class="mb-3 flex items-center">
+      <label
+        for="bookisComplete"
+        class="flex-initial text-xl font-bold text-gray-600"
         >Completed</label
       >
-      <br />
       <input
         id="bookisComplete"
         v-model="bookisComplete"
         type="checkbox"
         class="
+          flex-none
           p-2
-          mt-2
           ml-2
           rounded-sm
           border-0
@@ -103,9 +104,9 @@
         text-lg
         font-bold
         bg-gradient-to-r
-        from-indigo-500
+        from-indigo-400
         to-blue-500
-        hover:from-indigo-600 hover:to-blue-600
+        hover:from-indigo-500 hover:to-blue-600
       "
     >
       Add Book
