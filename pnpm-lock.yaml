@@ -8,6 +8,7 @@ specifiers:
   eslint: ^7.30.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-vue: ^7.13.0
+  nanoid: ^3.1.23
   postcss: ^8.3.5
   prettier: ^2.3.2
   tailwindcss: ^2.2.4
@@ -25,6 +26,7 @@ devDependencies:
   eslint: 7.30.0
   eslint-config-prettier: 8.3.0_eslint@7.30.0
   eslint-plugin-vue: 7.13.0_eslint@7.30.0
+  nanoid: 3.1.23
   postcss: 8.3.5
   prettier: 2.3.2
   tailwindcss: 2.2.4_d0cbdb03a6e75c60c9760f17c403e6d9

@@ -1,6 +1,7 @@
 <template>
   <form
-    class="p-4 sm:mx-2 lg:mx-auto lg:w-6/12 bg-gray-100 rounded-md shadow-xl"
+    class="p-4 mx-auto lg:w-6/12 bg-gray-100 rounded-lg shadow-xl"
+    @submit.prevent="addBook"
   >
     <div class="mb-3">
       <label for="bookTitle" class="text-xl font-bold text-gray-600"
@@ -9,6 +10,7 @@
       <br />
       <input
         id="bookTitle"
+        v-model="bookTitle"
         type="text"
         class="
           p-2
@@ -31,6 +33,7 @@
       <br />
       <input
         id="bookAuthor"
+        v-model="bookAuthor"
         type="text"
         class="
           p-2
@@ -51,6 +54,7 @@
       <br />
       <input
         id="bookYear"
+        v-model="bookYear"
         type="text"
         class="
           p-2
@@ -73,6 +77,7 @@
       <br />
       <input
         id="bookisComplete"
+        v-model="bookisComplete"
         type="checkbox"
         class="
           p-2
@@ -109,7 +114,45 @@
 </template>
 
 <script>
+import { ref, reactive, toRefs } from 'vue'
+import { nanoid } from 'nanoid'
+
 export default {
   name: 'Form',
+  setup() {
+    const books = ref([])
+
+    const state = reactive({
+      bookTitle: '',
+      bookAuthor: '',
+      bookYear: null,
+      bookisComplete: false,
+    })
+
+    function addBook() {
+      books.value.push({
+        id: nanoid(),
+        title: state.bookTitle,
+        author: state.bookAuthor,
+        year: state.bookYear,
+        isComplete: state.bookisComplete,
+      })
+      clearInput()
+    }
+
+    function clearInput() {
+      state.bookTitle = ''
+      state.bookAuthor = ''
+      state.bookYear = null
+      state.bookisComplete = false
+    }
+
+    return {
+      ...toRefs(state),
+      books,
+      addBook,
+      clearInput,
+    }
+  },
 }
 </script>
