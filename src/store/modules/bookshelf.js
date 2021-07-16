@@ -26,7 +26,14 @@ export default {
   // Actions
   actions: {
     addBook: async ({ commit }, data) => await commit('setBook', data),
+
     removeBook: async ({ commit }, data) => await commit('dropBook', data),
+
+    addBookToComplete: async ({ commit }, data) =>
+      await commit('setBookToComplete', data),
+
+    addBookToInComplete: async ({ commit }, data) =>
+      await commit('setBookToInComplete', data),
   },
 
   // Mutations
@@ -39,16 +46,26 @@ export default {
         year: payload.bookYear,
         isComplete: payload.bookisComplete,
       }),
+
     dropBook: (state, payload) => state.bookshelf.splice(payload, 1),
+
+    setBookToComplete: (state, payload) =>
+      (state.bookshelf[payload].isComplete = true),
+
+    setBookToInComplete: (state, payload) =>
+      (state.bookshelf[payload].isComplete = false),
   },
 
   // Getters
   getters: {
     getBookshelf: (state) => state.bookshelf,
+
     inCompleteBooks: (state) =>
       state.bookshelf.filter((e) => e.isComplete === false),
+
     completeBooks: (state) =>
       state.bookshelf.filter((e) => e.isComplete === true),
+
     findBookIndex: (state) => (id) => {
       let i = 0
       for (let book of state.bookshelf) {

@@ -5,7 +5,7 @@
       v-for="inCompleteBook in inCompleteBooks"
       :key="inCompleteBook.id"
       class="
-        p-2
+        p-3
         mb-2
         mx-auto
         w-full
@@ -20,6 +20,7 @@
       <p class="text-xl font-bold">{{ inCompleteBook.title }}</p>
       <p>Author: {{ inCompleteBook.author }}</p>
       <p>Year: {{ inCompleteBook.year }}</p>
+
       <Button
         button-title="Remove"
         button-class="
@@ -32,6 +33,20 @@
         hover:bg-red-600"
         @click-event="removeBook(inCompleteBook.id)"
       />
+
+      <Button
+        button-title="Finished Reading"
+        button-class="
+        p-2
+        mt-2
+        ml-2
+        mb-2
+        text-lg
+        rounded-lg
+        bg-green-500
+        hover:bg-green-600"
+        @click-event="addBookToComplete(inCompleteBook.id)"
+      />
     </div>
   </div>
 
@@ -41,7 +56,7 @@
       v-for="completeBook in completeBooks"
       :key="completeBook.id"
       class="
-        p-2
+        p-3
         mb-2
         mx-auto
         w-full
@@ -56,6 +71,7 @@
       <p class="text-xl font-bold">{{ completeBook.title }}</p>
       <p>Author: {{ completeBook.author }}</p>
       <p>Year: {{ completeBook.year }}</p>
+
       <Button
         button-title="Remove"
         button-class="
@@ -67,6 +83,20 @@
         bg-red-500
         hover:bg-red-600"
         @click-event="removeBook(completeBook.id)"
+      />
+
+      <Button
+        button-title="Not Finished Reading"
+        button-class="
+        p-2
+        mt-2
+        ml-2
+        mb-2
+        text-lg
+        rounded-lg
+        bg-green-500
+        hover:bg-green-600"
+        @click-event="addBookToInComplete(completeBook.id)"
       />
     </div>
   </div>
@@ -86,15 +116,21 @@ export default {
   setup() {
     const store = useStore()
 
-    const removeBook = (id) => {
-      const bookIndex = store.getters.findBookIndex(id)
-      return store.dispatch('removeBook', bookIndex)
-    }
+    const removeBook = (id) =>
+      store.dispatch('removeBook', store.getters.findBookIndex(id))
+
+    const addBookToComplete = (id) =>
+      store.dispatch('addBookToComplete', store.getters.findBookIndex(id))
+
+    const addBookToInComplete = (id) =>
+      store.dispatch('addBookToInComplete', store.getters.findBookIndex(id))
 
     return {
       inCompleteBooks: computed(() => store.getters.inCompleteBooks),
       completeBooks: computed(() => store.getters.completeBooks),
       removeBook,
+      addBookToComplete,
+      addBookToInComplete,
     }
   },
 }
