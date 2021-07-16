@@ -26,6 +26,7 @@ export default {
   // Actions
   actions: {
     addBook: async ({ commit }, data) => await commit('setBook', data),
+    removeBook: async ({ commit }, data) => await commit('dropBook', data),
   },
 
   // Mutations
@@ -38,6 +39,7 @@ export default {
         year: payload.bookYear,
         isComplete: payload.bookisComplete,
       }),
+    dropBook: (state, payload) => state.bookshelf.splice(payload, 1),
   },
 
   // Getters
@@ -47,5 +49,13 @@ export default {
       state.bookshelf.filter((e) => e.isComplete === false),
     completeBooks: (state) =>
       state.bookshelf.filter((e) => e.isComplete === true),
+    findBookIndex: (state) => (id) => {
+      let i = 0
+      for (let book of state.bookshelf) {
+        if (book.id === id) return i
+        i++
+      }
+      return -1
+    },
   },
 }

@@ -20,6 +20,18 @@
       <p class="text-xl font-bold">{{ inCompleteBook.title }}</p>
       <p>Author: {{ inCompleteBook.author }}</p>
       <p>Year: {{ inCompleteBook.year }}</p>
+      <Button
+        button-title="Remove"
+        button-class="
+        p-2
+        mt-2
+        mb-2
+        text-lg
+        rounded-lg
+        bg-red-500
+        hover:bg-red-600"
+        @click-event="removeBook(inCompleteBook.id)"
+      />
     </div>
   </div>
 
@@ -44,6 +56,18 @@
       <p class="text-xl font-bold">{{ completeBook.title }}</p>
       <p>Author: {{ completeBook.author }}</p>
       <p>Year: {{ completeBook.year }}</p>
+      <Button
+        button-title="Remove"
+        button-class="
+        p-2
+        mt-2
+        mb-2
+        text-lg
+        rounded-lg
+        bg-red-500
+        hover:bg-red-600"
+        @click-event="removeBook(completeBook.id)"
+      />
     </div>
   </div>
 </template>
@@ -52,13 +76,25 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 
+import Button from './Button.vue'
+
 export default {
   name: 'Bookshelf',
+  components: {
+    Button,
+  },
   setup() {
     const store = useStore()
+
+    const removeBook = (id) => {
+      const bookIndex = store.getters.findBookIndex(id)
+      return store.dispatch('removeBook', bookIndex)
+    }
+
     return {
       inCompleteBooks: computed(() => store.getters.inCompleteBooks),
       completeBooks: computed(() => store.getters.completeBooks),
+      removeBook,
     }
   },
 }
