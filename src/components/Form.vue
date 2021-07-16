@@ -23,6 +23,7 @@
           text-lg
         "
         placeholder="Book Title"
+        required
       />
     </div>
 
@@ -46,6 +47,7 @@
           text-lg
         "
         placeholder="Book Author"
+        required
       />
     </div>
 
@@ -67,6 +69,7 @@
           text-lg
         "
         placeholder="Book Year"
+        required
       />
     </div>
 
@@ -115,52 +118,44 @@
 </template>
 
 <script>
-import { ref, reactive, toRefs } from 'vue'
-import { nanoid } from 'nanoid'
+import { reactive, toRefs } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   name: 'Form',
-  props: {
-    books: {
-      type: Array,
-      required: true,
-    },
-  },
-  setup(props) {
-    const state = reactive({
+  setup() {
+    const store = useStore()
+
+    const initialState = {
       bookTitle: '',
       bookAuthor: '',
       bookYear: null,
       bookisComplete: false,
-    })
-
-    const booksData = ref(props.books)
-
-    async function addBook() {
-      const addData = await booksData.value.push({
-        id: nanoid(),
-        title: state.bookTitle,
-        author: state.bookAuthor,
-        year: state.bookYear,
-        isComplete: state.bookisComplete,
-      })
-      clearInput()
-      return addData
     }
 
-    function clearInput() {
-      state.bookTitle = ''
-      state.bookAuthor = ''
-      state.bookYear = null
-      state.bookisComplete = false
-      return state
+    const formState = reactive(initialState)
+
+    const addBook = () => {
+      if (formValidation) {
+        store.dispatch('addBook', formState)
+        clearForm()
+      }
+      return null
     }
+
+    const clearForm = () => {
+      formState.bookTitle = ''
+      formState.bookAuthor = ''
+      formState.bookYear = null
+      formState.bookisComplete = false
+      return formState
+    }
+
+    const formValidation = () => (formState !== initialState ? true : false)
 
     return {
-      ...toRefs(state),
-      booksData,
+      ...toRefs(formState),
       addBook,
-      clearInput,
     }
   },
 }
