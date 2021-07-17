@@ -52,7 +52,7 @@ export default createStore({
       state.bookshelf.push({
         id: nanoid(),
         title: payload.bookTitle,
-        author: payload.bookYear,
+        author: payload.bookAuthor,
         year: payload.bookYear,
         isComplete: payload.bookisComplete,
       }),
