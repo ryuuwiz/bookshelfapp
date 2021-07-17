@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite-build && vite preview --host"
   },
   "dependencies": {
     "nanoid": "^3.1.23",

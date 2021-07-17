@@ -135,10 +135,10 @@ export default {
 
     const formState = reactive(initialState)
 
-    const addBook = () => {
-      if (formValidation) {
-        store.dispatch('addBook', formState)
-        clearForm()
+    const addBook = async () => {
+      if (formState !== initialState) {
+        await store.dispatch('addBook', formState)
+        return clearForm()
       }
       return null
     }
@@ -150,8 +150,6 @@ export default {
       formState.bookisComplete = false
       return formState
     }
-
-    const formValidation = () => (formState !== initialState ? true : false)
 
     return {
       ...toRefs(formState),
