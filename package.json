@@ -3,12 +3,14 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite-build && vite preview --host"
+    "serve": "vite build && vite preview --host"
   },
   "dependencies": {
     "nanoid": "^3.1.23",
+    "secure-ls": "^1.2.6",
     "vue": "^3.0.5",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.3",
