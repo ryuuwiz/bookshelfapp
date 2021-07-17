@@ -78,14 +78,8 @@ export default createStore({
     completeBooks: (state) =>
       state.bookshelf.filter((e) => e.isComplete === true),
 
-    findBookIndex: (state) => (id) => {
-      let i = 0
-      for (let book of state.bookshelf) {
-        if (book.id === id) return i
-        i++
-      }
-      return -1
-    },
+    findBookIndex: (state) => (id) =>
+      state.bookshelf.findIndex((x) => x.id === id),
 
     getSearchStatus: (state) => state.search.status,
 

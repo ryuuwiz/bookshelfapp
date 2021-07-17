@@ -1,11 +1,12 @@
 <template>
   <div class="p-3 mb-4 mx-auto lg:w-6/12 bg-gray-200 rounded-lg shadow-xl">
-    <h2 class="mb-4 text-2xl text-center font-bold text-gray-600">
+    <h2 class="mb-4 mr-3 text-2xl text-center font-bold text-gray-600">
       Search Book
     </h2>
     <div class="flex flex-row items-center justify-between">
       <input
         v-model="query"
+        :class="showInput === false ? 'hidden' : 'block'"
         type="text"
         class="
           p-2
@@ -21,9 +22,9 @@
         @keyup.enter="addSearch"
       />
       <button
+        :class="showInput === true ? 'w-1/3' : 'w-full'"
         class="
           p-2
-          w-1/3
           rounded-lg
           text-white
           hover:bg-blue-600
@@ -34,7 +35,7 @@
           to-blue-500
           hover:from-indigo-500 hover:to-blue-600
         "
-        @click="addSearch"
+        @click="toggleShowInput"
       >
         Search
       </button>
@@ -53,6 +54,8 @@ export default {
 
     const query = ref('')
 
+    const showInput = ref(false)
+
     const addSearch = async () => {
       if (query.value !== '') {
         await store.dispatch('addSearch', {
@@ -67,9 +70,16 @@ export default {
       })
     }
 
+    const toggleShowInput = () =>
+      showInput.value === false
+        ? (showInput.value = true)
+        : (showInput.value = false)
+
     return {
+      showInput,
       query,
       addSearch,
+      toggleShowInput,
     }
   },
 }
