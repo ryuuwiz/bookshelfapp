@@ -1,5 +1,5 @@
 # Welcome to Bookshelf App 👋
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-3.5.1-blue.svg?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/badge/License-MIT/License-yellow.svg)](https://www.mit.edu/~amini/LICENSE.md)
 
 > just a simple bookshelf app
