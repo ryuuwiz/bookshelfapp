@@ -26,32 +26,49 @@
       <p>Author: {{ inCompleteBook.author }}</p>
       <p>Year: {{ inCompleteBook.year }}</p>
 
-      <Button
-        button-title="Remove"
-        button-class="
+      <div class="mt-3 w-full flex flex-row">
+        <Button
+          button-title="Remove"
+          button-class="
         p-2
-        mt-2
-        mb-2
+        m-2
+        w-1/2
+        md:w-14
+        md:h-14
+        md:flex
+        md:justify-center
+        md:items-center
+        md:rounded-full
         text-lg
         rounded-lg
         bg-red-500
-        hover:bg-red-600"
-        @click-event="removeBook(inCompleteBook.id)"
-      />
+        hover:bg-red-600
+        far fa-trash-alt fa-7x
+        "
+          @click-event="removeBook(inCompleteBook.id)"
+        />
 
-      <Button
-        button-title="Finished"
-        button-class="
-        p-2
-        mt-2
-        ml-2
-        mb-2
-        text-lg
-        rounded-lg
-        bg-green-500
-        hover:bg-green-600"
-        @click-event="addBookToComplete(inCompleteBook.id)"
-      />
+        <Button
+          button-title="Not Finished"
+          button-class="
+            p-2
+            m-2
+            w-1/2
+            md:w-14
+        md:h-14
+        md:flex
+        md:justify-center
+        md:items-center
+        md:rounded-full
+            text-lg
+            rounded-lg
+            bg-green-500
+            hover:bg-green-600
+            fas fa-check fa-7x
+            "
+          @click-event="addBookToComplete(inCompleteBook.id)"
+        />
+      </div>
     </div>
   </div>
 
@@ -82,32 +99,49 @@
       <p>Author: {{ completeBook.author }}</p>
       <p>Year: {{ completeBook.year }}</p>
 
-      <Button
-        button-title="Remove"
-        button-class="
+      <div class="mt-3 w-full flex flex-row">
+        <Button
+          button-title="Remove"
+          button-class="
         p-2
-        mt-2
-        mb-2
+        m-2
+        w-1/2
+        md:w-14
+        md:h-14
+        md:flex
+        md:justify-center
+        md:items-center
+        md:rounded-full
         text-lg
         rounded-lg
         bg-red-500
-        hover:bg-red-600"
-        @click-event="removeBook(completeBook.id)"
-      />
+        hover:bg-red-600
+        far fa-trash-alt fa-7x
+        "
+          @click-event="removeBook(completeBook.id)"
+        />
 
-      <Button
-        button-title="Not Finished"
-        button-class="
+        <Button
+          button-title="Not Finished"
+          button-class="
         p-2
-        mt-2
-        ml-2
-        mb-2
+        m-2
+        w-1/2
+        md:w-14
+        md:h-14
+        md:flex
+        md:justify-center
+        md:items-center
+        md:rounded-full
         text-lg
         rounded-lg
-        bg-green-500
-        hover:bg-green-600"
-        @click-event="addBookToInComplete(completeBook.id)"
-      />
+        bg-yellow-500
+        hover:bg-yellow-600
+        fas fa-times fa-7x
+        "
+          @click-event="addBookToInComplete(completeBook.id)"
+        />
+      </div>
     </div>
   </div>
 </template>

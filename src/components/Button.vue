@@ -1,5 +1,5 @@
 <template>
-  <button :class="btnClass" @click="customClick">{{ btnTitle }}</button>
+  <button :class="btnClass" @click="customClick"></button>
 </template>
 
 <script>
@@ -8,10 +8,6 @@ import { reactive, toRefs } from 'vue'
 export default {
   name: 'Button',
   props: {
-    buttonTitle: {
-      type: String,
-      required: true,
-    },
     buttonClass: {
       type: String,
       required: true,
@@ -20,7 +16,6 @@ export default {
   emits: ['click-event'],
   setup(props, { emit }) {
     const btn = reactive({
-      btnTitle: props.buttonTitle,
       btnClass: props.buttonClass,
     })
 

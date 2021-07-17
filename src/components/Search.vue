@@ -27,18 +27,24 @@
       <button
         class="
           p-2
-          w-1/3
-          rounded-lg
+          w-11
+          h-11
+          flex
+          justify-center
+          items-center
+          rounded-full
           text-white text-lg
           font-bold
           bg-gradient-to-r
           from-indigo-400
           to-blue-500
           hover:from-indigo-500 hover:to-blue-600 hover:bg-blue-600
+          hidden
+          md:flex
         "
         @click="addSearch"
       >
-        Search
+        <i class="fas fa-search"></i>
       </button>
     </div>
 
