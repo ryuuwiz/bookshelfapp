@@ -1,6 +1,6 @@
 <template>
   <div class="p-3 mb-4 mx-auto lg:w-6/12 bg-gray-200 rounded-lg shadow-xl">
-    <h2 class="mb-4 text-2xl font-bold text-gray-600">InCompleted Books</h2>
+    <h2 class="mb-4 text-2xl font-bold text-gray-600">Not Finished Reading</h2>
     <div
       v-for="inCompleteBook in inCompleteBooks"
       :key="inCompleteBook.id"
@@ -40,7 +40,7 @@
       />
 
       <Button
-        button-title="Finished Reading"
+        button-title="Finished"
         button-class="
         p-2
         mt-2
@@ -56,7 +56,7 @@
   </div>
 
   <div class="p-3 mb-4 mx-auto lg:w-6/12 bg-gray-200 rounded-lg shadow-xl">
-    <h2 class="mb-4 text-2xl font-bold text-gray-600">Completed Books</h2>
+    <h2 class="mb-4 text-2xl font-bold text-gray-600">Finished Reading</h2>
     <div
       v-for="completeBook in completeBooks"
       :key="completeBook.id"
@@ -96,7 +96,7 @@
       />
 
       <Button
-        button-title="Not Finished Reading"
+        button-title="Not Finished"
         button-class="
         p-2
         mt-2
