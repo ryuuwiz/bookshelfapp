@@ -3,6 +3,9 @@
     class="p-4 mb-5 mx-auto lg:w-6/12 bg-gray-200 rounded-lg shadow-xl"
     @submit.prevent="addBook"
   >
+    <h2 class="mb-4 text-2xl text-center font-bold text-gray-600">
+      Add New Book
+    </h2>
     <div class="mb-3">
       <label for="bookTitle" class="text-xl font-bold text-gray-600"
         >Title</label

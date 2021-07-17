@@ -4,6 +4,11 @@
     <div
       v-for="inCompleteBook in inCompleteBooks"
       :key="inCompleteBook.id"
+      :class="
+        getSearchStatus === true && inCompleteBook.title !== findBookTitle
+          ? 'hidden'
+          : 'block'
+      "
       class="
         p-3
         mb-2
@@ -55,6 +60,11 @@
     <div
       v-for="completeBook in completeBooks"
       :key="completeBook.id"
+      :class="
+        getSearchStatus === true && completeBook.title !== findBookTitle
+          ? 'hidden'
+          : 'block'
+      "
       class="
         p-3
         mb-2
@@ -128,6 +138,8 @@ export default {
     return {
       inCompleteBooks: computed(() => store.getters.inCompleteBooks),
       completeBooks: computed(() => store.getters.completeBooks),
+      getSearchStatus: computed(() => store.getters.getSearchStatus),
+      findBookTitle: computed(() => store.getters.findBookTitle),
       removeBook,
       addBookToComplete,
       addBookToInComplete,

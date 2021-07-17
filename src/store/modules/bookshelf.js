@@ -21,6 +21,10 @@ export default {
         isComplete: true,
       },
     ],
+    search: {
+      query: '',
+      status: false,
+    },
   }),
 
   // Actions
@@ -34,6 +38,8 @@ export default {
 
     addBookToInComplete: async ({ commit }, data) =>
       await commit('setBookToInComplete', data),
+
+    addSearch: async ({ commit }, data) => await commit('setSearch', data),
   },
 
   // Mutations
@@ -54,6 +60,8 @@ export default {
 
     setBookToInComplete: (state, payload) =>
       (state.bookshelf[payload].isComplete = false),
+
+    setSearch: (state, payload) => (state.search = payload),
   },
 
   // Getters
@@ -74,5 +82,12 @@ export default {
       }
       return -1
     },
+
+    getSearchStatus: (state) => state.search.status,
+
+    findBookTitle: (state) =>
+      state.bookshelf.filter((el) =>
+        new RegExp(state.search.query, 'gi').test(el.title),
+      )[0].title,
   },
 }
